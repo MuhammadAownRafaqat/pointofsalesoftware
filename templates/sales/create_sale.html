@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>POS</title>
+    </head>
+    <body>
+        <h1>Point of Sale</h1>
+
+        <form method="post">
+            {% csrf_token %}
+
+            <label>Product:</label>
+            <select name="product">
+                {% for product in products %}
+                <option value="{{ product.id }}">
+                    {{ product.name }} (Stock: {{ product.stock }})
+                </option>
+                {% endfor %}
+            </select>
+            <br><br>
+            <label>Quantity:</label>
+            <input type="number" name="quantity" min="1 required">
+            <br><br>
+
+            <button type="submit">Add Sale</button>
+        </form>
+    </body>
+</html>
